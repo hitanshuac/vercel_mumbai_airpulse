@@ -11,6 +11,19 @@ from urllib.parse import urlparse
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
+# Auto-load from .env if present
+if not DATABASE_URL:
+    for env_path in [Path(".env"), Path(__file__).parent / ".env", Path(__file__).parent.parent / ".env"]:
+        if env_path.exists():
+            with open(env_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith("DATABASE_URL="):
+                        DATABASE_URL = line.split("=", 1)[1].strip().strip('"').strip("'")
+                        break
+        if DATABASE_URL:
+            break
+
 if not DATABASE_URL:
     print("=" * 70)
     print("DATABASE_URL environment variable is not set.")
