@@ -1,0 +1,14 @@
+{
+  "name": "mumbai-airpulse-serverless",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Zindi Google Mumbai Air Quality Forecasting - Vercel + Neon Serverless Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "seed": "python seed_neon.py"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  }
+}

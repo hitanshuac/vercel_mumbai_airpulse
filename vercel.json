@@ -1,0 +1,9 @@
+{
+  "buildCommand": "echo 'Build ready'",
+  "outputDirectory": ".",
+  "functions": {
+    "api/*.js": {
+      "includeFiles": "public/data/**"
+    }
+  }
+}
