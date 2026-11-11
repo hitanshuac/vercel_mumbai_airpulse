@@ -49,4 +49,28 @@ except ImportError:
                     cur.execute(f.read())
         print("SUCCESS: Neon Serverless Database seeded via psycopg3!")
     except ImportError:
-        print("Neither psycopg2 nor psycopg is installed. You can execute neon_schema_and_seed.sql directly inside the Neon Console SQL Editor in 1 click!")
+        try:
+            import pg8000.native
+            import ssl
+            ctx = ssl.create_default_context()
+            # Parse connection details from DATABASE_URL
+            import urllib.parse
+            parsed = urllib.parse.urlparse(DATABASE_URL)
+            conn = pg8000.native.Connection(
+                user=parsed.username,
+                password=parsed.password,
+                host=parsed.hostname,
+                port=parsed.port or 5432,
+                database=parsed.path.lstrip('/'),
+                ssl_context=ctx
+            )
+            with open(sql_file, "r", encoding="utf-8") as f:
+                sql_content = f.read()
+            statements = [s.strip() for s in sql_content.split(';\n') if s.strip()]
+            for stmt in statements:
+                if stmt:
+                    conn.run(stmt + ';')
+            conn.close()
+            print("SUCCESS: Neon Serverless Database seeded via pg8000!")
+        except ImportError:
+            print("Neither psycopg2, psycopg, nor pg8000 is installed. You can execute neon_schema_and_seed.sql directly inside the Neon Console SQL Editor in 1 click!")
