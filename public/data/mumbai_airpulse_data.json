@@ -16629,8 +16629,14 @@
       "directive": "Ventilation index drops under 500 m2/s before 08:30 IST. Shift outdoor tempo workouts to the 15:30-17:30 IST afternoon window when daytime boundary layer opens to 950m."
     }
   ],
+  "carto_api_key": "",
+  "map_config": {
+    "provider": "carto",
+    "carto_api_key": "",
+    "has_carto_key": false
+  },
   "metadata": {
-    "generated_at": "2026-11-12T14:22:37.058329",
+    "generated_at": "2026-11-12T14:59:11.694994",
     "total_stations": 32,
     "telemetry_count": 768,
     "forecast_window": "2026-11-11 00:00 to 2026-11-12 23:00 IST",

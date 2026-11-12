@@ -10,6 +10,12 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   const dbUrl = process.env.DATABASE_URL;
+  const cartoApiKey = process.env.CARTO_API_KEY || process.env.MAP_API_KEY || process.env.CARTO_KEY || '';
+  const mapConfig = {
+    provider: 'carto',
+    carto_api_key: cartoApiKey,
+    has_carto_key: Boolean(cartoApiKey)
+  };
 
   // 1. Try Neon Database if DATABASE_URL is configured
   if (dbUrl) {
@@ -27,6 +33,8 @@ export default async function handler(req, res) {
         hourly_telemetry: telemetry,
         leaderboard_kpis: kpis,
         civic_grap_alerts: alerts,
+        carto_api_key: cartoApiKey,
+        map_config: mapConfig,
         cached_at: new Date().toISOString()
       });
     } catch (err) {
@@ -36,12 +44,17 @@ export default async function handler(req, res) {
 
   // 2. Zero-Latency Fallback to bundled JSON
   try {
-    const fallbackPath = path.join(process.cwd(), 'public', 'data', 'mumbai_airpulse_data.json');
+    let fallbackPath = path.join(process.cwd(), 'public', 'data', 'mumbai_airpulse_data.json');
+    if (!fs.existsSync(fallbackPath)) {
+      fallbackPath = path.resolve('./public/data/mumbai_airpulse_data.json');
+    }
     if (fs.existsSync(fallbackPath)) {
       const fileData = JSON.parse(fs.readFileSync(fallbackPath, 'utf8'));
       return res.status(200).json({
         source: 'Zero-Latency Edge JSON Fallback',
-        ...fileData
+        ...fileData,
+        carto_api_key: cartoApiKey,
+        map_config: mapConfig
       });
     }
   } catch (err) {
