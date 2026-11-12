@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
   // Live Gemini Waterfall Proxy with Quota Guard
   if (req.method === 'POST' && req.body && req.body.action === 'generate_gemini') {
-    const geminiKey = req.body.apiKey || process.env.GEMINI_API_KEY;
+    const geminiKey = process.env.GEMINI_API_KEY;
     if (geminiKey) {
       // 4-Tier Free-Tier Waterfall: 3.5-Flash-Lite (500 RPD) -> 3.1-Flash-Lite -> 2.5-Flash-Lite -> 2.5-Flash
       const modelsWaterfall = [
