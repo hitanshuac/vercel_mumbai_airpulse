@@ -11,7 +11,8 @@ Production-ready serverless full-stack web application designed for instant 1-cl
 - **Neon Serverless Postgres**: Endpoints in `/api/telemetry` and `/api/alerts` connect dynamically when `DATABASE_URL` is set.
 
 ## Deploy to Vercel (1-Click)
-1. In Vercel, click **Add New > Project** and import this repository (`hitanshuac/vercel_mumbai_airpulse`).
+1. In Vercel, click **Add New > Project** and import repository (`hitanshuac/vercel_mumbai_airpulse`).
 2. Accept the default settings (**Root Directory: `./`**, **Framework Preset: `Other`**).
 3. (Optional) In project settings or Storage tab, connect Neon Serverless Postgres to populate `DATABASE_URL`.
 4. Click **Deploy**!
+

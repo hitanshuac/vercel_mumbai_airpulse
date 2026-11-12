@@ -7,22 +7,8 @@ Connects to Neon Serverless Postgres via DATABASE_URL and executes neon_schema_a
 import os
 import sys
 from pathlib import Path
-from urllib.parse import urlparse
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
-
-# Auto-load from .env if present
-if not DATABASE_URL:
-    for env_path in [Path(".env"), Path(__file__).parent / ".env", Path(__file__).parent.parent / ".env"]:
-        if env_path.exists():
-            with open(env_path, "r", encoding="utf-8") as f:
-                for line in f:
-                    line = line.strip()
-                    if line.startswith("DATABASE_URL="):
-                        DATABASE_URL = line.split("=", 1)[1].strip().strip('"').strip("'")
-                        break
-        if DATABASE_URL:
-            break
 
 if not DATABASE_URL:
     print("=" * 70)
@@ -40,7 +26,7 @@ if not sql_file.exists():
     print(f"Error: {sql_file} not found.")
     sys.exit(1)
 
-print(f"Connecting to Neon Postgres...")
+print("Connecting to Neon Postgres...")
 try:
     import psycopg2
     conn = psycopg2.connect(DATABASE_URL)
@@ -62,28 +48,4 @@ except ImportError:
                     cur.execute(f.read())
         print("SUCCESS: Neon Serverless Database seeded via psycopg3!")
     except ImportError:
-        try:
-            import pg8000.native
-            import ssl
-            ctx = ssl.create_default_context()
-            # Parse connection details from DATABASE_URL
-            import urllib.parse
-            parsed = urllib.parse.urlparse(DATABASE_URL)
-            conn = pg8000.native.Connection(
-                user=parsed.username,
-                password=parsed.password,
-                host=parsed.hostname,
-                port=parsed.port or 5432,
-                database=parsed.path.lstrip('/'),
-                ssl_context=ctx
-            )
-            with open(sql_file, "r", encoding="utf-8") as f:
-                sql_content = f.read()
-            statements = [s.strip() for s in sql_content.split(';\n') if s.strip()]
-            for stmt in statements:
-                if stmt:
-                    conn.run(stmt + ';')
-            conn.close()
-            print("SUCCESS: Neon Serverless Database seeded via pg8000!")
-        except ImportError:
-            print("Neither psycopg2, psycopg, nor pg8000 is installed. You can execute neon_schema_and_seed.sql directly inside the Neon Console SQL Editor in 1 click!")
+        print("Neither psycopg2 nor psycopg is installed. You can execute neon_schema_and_seed.sql directly inside the Neon Console SQL Editor in 1 click!")
