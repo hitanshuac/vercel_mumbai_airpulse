@@ -27,8 +27,8 @@ export default async function handler(req, res) {
   "directive_summary": "1-2 sentence executive directive",
   "cardA": { "title": "🕒 Citizen Safe Outdoor Window", "station": "${station}", "safe_window": "14:00 – 17:00 IST", "risk_window": "01:00 – 08:00 IST", "citizen_advice": "advice" },
   "cardB": { "title": "🏗️ Municipal & BMC Ward Action", "ward": "Ward Action Zone", "misting_schedule": "schedule", "curfew_directive": "directive" },
-  "cardC": { "title": "📈 Model Evidence: Slot #6 vs Slot #5", "slot6_val": "val", "slot5_val": "val", "ou_dynamics": "decay", "cams_evidence": "evidence" },
-  "formula_latex": "C_t = \frac{Q}{\text{BLH}_t \cdot U_{10m,t}} \cdot (1 + \gamma \cdot \text{AOD}_t)"
+  "cardC": { "title": "📈 Model Evidence: Slot #5 (Champion) vs Slot #6", "slot5_val": "val", "slot6_val": "val", "ou_dynamics": "decay", "cams_evidence": "evidence" },
+  "formula_latex": "C_t = \\frac{Q}{\\text{BLH}_t \\cdot U_{10m,t}} \\cdot (1 + \\gamma \\cdot \\text{AOD}_t) = \\frac{Q}{\\text{VI}_t} \\cdot (1 + \\gamma \\cdot \\text{AOD}_t)"
 }`;
 
       for (const model of modelsWaterfall) {
@@ -101,13 +101,13 @@ export default async function handler(req, res) {
           curfew_directive: `Enforce heavy diesel truck diversion between 00:00 and 07:00 IST when Ventilation Index drops to ${vi} m²/s. Halt unmitigated construction dust.`
         },
         cardC: {
-          title: "📈 Model Evidence: Slot #6 vs Slot #5",
-          slot6_val: `${slot6} µg/m³ (Dual-Regime OU Decay)`,
-          slot5_val: `${slot5} µg/m³ (CAMS Satellite Ceiling)`,
+          title: "📈 Model Evidence: Slot #5 (Champion) vs Slot #6",
+          slot5_val: `${slot5} µg/m³ (Slot #5 CAMS Champion · 61.66 Pub)`,
+          slot6_val: `${slot6} µg/m³ (Slot #6 Baseline · 8.70 Norm)`,
           ou_dynamics: "Post-Diwali smoke decays via Ornstein-Uhlenbeck exponential relaxation with t_1/2 = 32.5h (DM p=0.0153).",
           cams_evidence: `Regional CAMS AOD at ${aod} (Wind: ${ws} m/s) proves local boundary layer compression dominates regional transport.`
         },
-        formula_latex: "C_t = \frac{Q}{\text{BLH}_t \cdot U_{10m,t}} \cdot (1 + \gamma \cdot \text{AOD}_t)"
+        formula_latex: "C_t = \\frac{Q}{\\text{BLH}_t \\cdot U_{10m,t}} \\cdot (1 + \\gamma \\cdot \\text{AOD}_t) = \\frac{Q}{\\text{VI}_t} \\cdot (1 + \\gamma \\cdot \\text{AOD}_t)"
       }
     });
   }

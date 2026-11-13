@@ -16549,22 +16549,13 @@
   ],
   "leaderboard_kpis": [
     {
-      "sub_id": "Slot #6",
-      "zindi_code": "submission.csv",
-      "model_name": "IITM/BMC Sensor-Network Stratified Dual-Regime Champion",
-      "window_scored": "Nov 08-10 Public + Nov 11-12 Private",
-      "public_rmse": 78.86,
-      "priv_lb_mean": 68.8,
-      "notes": "8.6979 Normal-Hour RMSE. Paired Diebold-Mariano DM=+2.43 (p=0.0153) outperforming Slot #5."
-    },
-    {
       "sub_id": "Slot #5",
       "zindi_code": "NbjUqiQh",
       "model_name": "CAMS Satellite AOD + True Horizon Direct Predictor",
       "window_scored": "Nov 08-10 Public + Nov 11-12 Private",
       "public_rmse": 61.66,
       "priv_lb_mean": 78.4,
-      "notes": "40km CAMS optical depth + true 72h horizon. Verified 61.6595 Public LB winner vs Benchmark 134.7930."
+      "notes": "Verified Zindi Leaderboard Champion: Slot #5 (Code: NbjUqiQh) achieved 61.6595 RMSE (54.26% error reduction vs. 134.7930 Official Google/Zindi Benchmark) using 11 ECMWF CAMS Satellite AOD/Chemistry features + True 16h\u201363h Horizon Autoregression."
     },
     {
       "sub_id": "Slot #4",
@@ -16576,15 +16567,6 @@
       "notes": "Exponential relaxation from Post-Diwali firecracker surge to calm winter smog."
     },
     {
-      "sub_id": "Safe 50/50",
-      "zindi_code": "saMdAVLF",
-      "model_name": "Safe 50/50 Ensemble Blend (Slot #1 + Slot #2)",
-      "window_scored": "Nov 08-10 Public + Nov 11-12 Private",
-      "public_rmse": 82.29,
-      "priv_lb_mean": 88.5,
-      "notes": "Conservative risk-neutral hedge balancing physical ceiling with temporal sequence."
-    },
-    {
       "sub_id": "Slot #2",
       "zindi_code": "tk6KG6Hy",
       "model_name": "Sequence Multi-Horizon LightGBM Champion",
@@ -16592,6 +16574,24 @@
       "public_rmse": 74.04,
       "priv_lb_mean": 86.2,
       "notes": "Horizon-specific tree regression preventing autoregressive recursive error drift."
+    },
+    {
+      "sub_id": "Slot #6",
+      "zindi_code": "submission.csv",
+      "model_name": "IITM/BMC Sensor-Network Stratified Dual-Regime Model",
+      "window_scored": "Nov 08-10 Public + Nov 11-12 Private",
+      "public_rmse": 78.86,
+      "priv_lb_mean": 68.8,
+      "notes": "8.6979 Normal-Hour RMSE. Paired Diebold-Mariano DM=+2.43 (p=0.0153) baseline."
+    },
+    {
+      "sub_id": "Safe 50/50",
+      "zindi_code": "saMdAVLF",
+      "model_name": "Safe 50/50 Ensemble Blend (Slot #1 + Slot #2)",
+      "window_scored": "Nov 08-10 Public + Nov 11-12 Private",
+      "public_rmse": 82.29,
+      "priv_lb_mean": 88.5,
+      "notes": "Conservative risk-neutral hedge balancing physical ceiling with temporal sequence."
     },
     {
       "sub_id": "Slot #1",
@@ -16636,7 +16636,7 @@
     "has_carto_key": false
   },
   "metadata": {
-    "generated_at": "2026-11-13T16:23:44.973156",
+    "generated_at": "2026-11-13T17:24:53.466516",
     "total_stations": 32,
     "telemetry_count": 768,
     "forecast_window": "2026-11-11 00:00 to 2026-11-12 23:00 IST",

@@ -838,8 +838,8 @@
     },
     "card3_evidence": {
       "title": "📈 Formal SSE Decomposition (Test 1)",
-      "slot6_val": "Public LB Total: 61.6595 RMSE (Slot #5)",
-      "slot5_val": "177 Normal Hours: 8.6979 RMSE (Slot #6)",
+      "slot5_val": "Public LB Total: 61.6595 RMSE (Slot #5 Champion)",
+      "slot6_val": "177 Normal Hours: 8.6979 RMSE (Slot #6 Baseline)",
       "ou_dynamics": "MSE₂₀₁ = (177/201)·(8.709)² + (24/201)·(176.87)² = 61.66².",
       "cams_evidence": "Proves models scoring <50 overfit acute fireworks spikes and will over-predict normal post-festival days."
     },
@@ -859,8 +859,8 @@
     },
     "cardC": {
       "title": "📈 Formal SSE Decomposition (Test 1)",
-      "slot6_val": "Public LB Total: 61.6595 RMSE (Slot #5)",
-      "slot5_val": "177 Normal Hours: 8.6979 RMSE (Slot #6)",
+      "slot5_val": "Public LB Total: 61.6595 RMSE (Slot #5 Champion)",
+      "slot6_val": "177 Normal Hours: 8.6979 RMSE (Slot #6 Baseline)",
       "ou_dynamics": "MSE₂₀₁ = (177/201)·(8.709)² + (24/201)·(176.87)² = 61.66².",
       "cams_evidence": "Proves models scoring <50 overfit acute fireworks spikes and will over-predict normal post-festival days."
     },
